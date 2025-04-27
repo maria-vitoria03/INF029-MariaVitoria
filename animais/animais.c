@@ -21,16 +21,29 @@ int menu(){
     return opcao;
 }
 
+int menuDois(){
+    int opcaoDois;
+
+    printf("*** Sistema de cadastro de animais ***\n\n");
+    printf("5 - Informacoes de todos\n");
+    printf("6 - Maiores ou iguais a media\n");
+    printf("7 - voltar\n");
+    printf("Digite sua opcao:\n");
+    scanf("%d", &opcaoDois);
+    return opcaoDois;
+}
 
 int main(){
-    int opcao = 0, qtdAnimais = 0;
+    int sair = 0;
+    int opcao = 0, opcaoDois = 0, qtdAnimais = 0;
 
     Animais  listaAnimais[TAM];
 
+    while(!sair){
+    
     opcao = menu();
-
-    switch (opcao)
-    {
+    
+    switch (opcao){
     case 0:
         return 0;
         break;
@@ -44,9 +57,9 @@ int main(){
             scanf("%c", &listaAnimais[qtdAnimais].sexo);
             qtdAnimais++;
             printf("Cadastro realizado com sucesso!\n");
-        } else {
+        } else { 
             printf("Lista de animais cheia!\n");
-        }
+            }
         break;
     case 2:
         printf("*** Exclusao do animal ***\n");
@@ -55,11 +68,26 @@ int main(){
         printf("*** Atualizacao do animal ***\n");
         break;
     case 4:
-        printf("*** Mais opcoes... ***\n");
+        opcaoDois = menuDois();
+        switch (opcaoDois){
+        case 5:
+            if(qtdAnimais == 0){
+                printf("Lista de animais vazia!\n");
+            } else {
+                for(int i = 0; i < qtdAnimais; i++){
+                printf("%d%c\n", listaAnimais[i].idade, listaAnimais[i].sexo);
+            }
+            }
+            break;     
+        default:
+            printf("Opcao Invalida!\n");
+            break;
+        }
         break;   
     default:
     printf("Opcao Invalida!\n");
         break;
+    }
     }  
     return 0;
 }
