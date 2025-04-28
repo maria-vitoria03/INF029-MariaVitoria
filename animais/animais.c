@@ -35,7 +35,7 @@ int menuDois(){
 
 int main(){
     int sair = 0;
-    int opcao = 0, opcaoDois = 0, qtdAnimais = 0;
+    int opcao = 0, opcaoDois = 0, qtdAnimais = 0, contIdade = 0, media = 0;
 
     Animais  listaAnimais[TAM];
 
@@ -52,6 +52,7 @@ int main(){
         if(qtdAnimais < TAM){
             printf("Informe a idade:\n");
             scanf("%d", &listaAnimais[qtdAnimais].idade);
+            contIdade += listaAnimais[qtdAnimais].idade;
             getchar();
             printf("Informe o sexo:\n");
             scanf("%c", &listaAnimais[qtdAnimais].sexo);
@@ -78,7 +79,22 @@ int main(){
                 printf("%d%c\n", listaAnimais[i].idade, listaAnimais[i].sexo);
             }
             }
-            break;     
+            break;
+        case 6:
+            media = contIdade / qtdAnimais;
+            if(qtdAnimais == 0){
+                printf("Lista de animais vazia!\n");
+            } else {
+                for(int j = 0; j < qtdAnimais; j++){
+                    if(listaAnimais[j].idade >= media){
+                        printf("%d%c\n", listaAnimais[j].idade, listaAnimais[j].sexo);
+                    }
+                }              
+            }
+            break;
+        case 7:
+        printf("loading...\n");
+        break;    
         default:
             printf("Opcao Invalida!\n");
             break;
