@@ -5,6 +5,7 @@
 typedef struct {
     int idade;
     char sexo;
+    char nome[81];
 } Animais;
 
 int menu(){
@@ -56,6 +57,9 @@ int main(){
             getchar();
             printf("Informe o sexo:\n");
             scanf("%c", &listaAnimais[qtdAnimais].sexo);
+            getchar();
+            printf("Informe o nome:\n");
+            gets(listaAnimais[qtdAnimais].nome);
             qtdAnimais++;
             printf("Cadastro realizado com sucesso!\n");
         } else { 
@@ -76,7 +80,7 @@ int main(){
                 printf("Lista de animais vazia!\n");
             } else {
                 for(int i = 0; i < qtdAnimais; i++){
-                printf("%d%c\n", listaAnimais[i].idade, listaAnimais[i].sexo);
+                printf("%d%c%s\n", listaAnimais[i].idade, listaAnimais[i].sexo, listaAnimais[i].nome);
             }
             }
             break;
@@ -87,7 +91,7 @@ int main(){
             } else {
                 for(int j = 0; j < qtdAnimais; j++){
                     if(listaAnimais[j].idade >= media){
-                        printf("%d%c\n", listaAnimais[j].idade, listaAnimais[j].sexo);
+                        printf("%d%c%s\n", listaAnimais[j].idade, listaAnimais[j].sexo, listaAnimais[j].nome);
                     }
                 }              
             }
