@@ -3,9 +3,16 @@
 #define TAM 3
 
 typedef struct {
+    int dia;
+    int mes;
+    int ano;
+} DataNascimento;
+
+typedef struct {
     int idade;
     char sexo;
     char nome[81];
+    DataNascimento dataNascimento;
 } Animais;
 
 int menu(){
@@ -60,6 +67,12 @@ int main(){
             getchar();
             printf("Informe o nome:\n");
             gets(listaAnimais[qtdAnimais].nome);
+            printf("Informe o dia do nascimento:\n");
+            scanf("%d", &listaAnimais[qtdAnimais].dataNascimento.dia);
+            printf("Informe o mes do nascimento:\n");
+            scanf("%d", &listaAnimais[qtdAnimais].dataNascimento.mes);
+            printf("Informe o ano do nascimento:\n");
+            scanf("%d", &listaAnimais[qtdAnimais].dataNascimento.ano);
             qtdAnimais++;
             printf("Cadastro realizado com sucesso!\n");
         } else { 
@@ -80,7 +93,7 @@ int main(){
                 printf("Lista de animais vazia!\n");
             } else {
                 for(int i = 0; i < qtdAnimais; i++){
-                printf("%d%c%s\n", listaAnimais[i].idade, listaAnimais[i].sexo, listaAnimais[i].nome);
+                printf("%d%c%s%d/%d/%d\n", listaAnimais[i].idade, listaAnimais[i].sexo, listaAnimais[i].nome, listaAnimais[i].dataNascimento.dia, listaAnimais[i].dataNascimento.mes, listaAnimais[i].dataNascimento.ano);
             }
             }
             break;
@@ -91,7 +104,7 @@ int main(){
             } else {
                 for(int j = 0; j < qtdAnimais; j++){
                     if(listaAnimais[j].idade >= media){
-                        printf("%d%c%s\n", listaAnimais[j].idade, listaAnimais[j].sexo, listaAnimais[j].nome);
+                        printf("%d%c%s\n", listaAnimais[j].idade, listaAnimais[j].sexo, listaAnimais[j].nome, listaAnimais[j].dataNascimento.dia, listaAnimais[j].dataNascimento.mes, listaAnimais[j].dataNascimento.ano);
                     }
                 }              
             }
