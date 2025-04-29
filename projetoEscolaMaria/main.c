@@ -1,6 +1,8 @@
 #include <stdio.h>
 
-int main(void){
+#include "pessoa.h"
+
+int main(){
     int sair = 0;
     int opcao;
 
@@ -13,20 +15,20 @@ int main(void){
     printf("4 - Emissao de relatorios\n");
     printf("Digite sua opcao:\n");
     scanf("%d", &opcao);
+    getchar();
 
     switch (opcao) {
     case 0:
-    return;
+    return 0;
+    break;
     case 1:
-        //moduloAluno();
+        menuAluno();
         break;  
     default:
         printf("Opcao Invalida!\n");
         break;
     }
 
-    }
-    
-
+    }  
     return 0;
 }
