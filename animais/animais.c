@@ -9,6 +9,7 @@ typedef struct {
 } DataNascimento;
 
 typedef struct {
+    int matricula;
     int idade;
     char sexo;
     char nome[81];
@@ -58,6 +59,8 @@ int main(){
     case 1:
         printf("*** Cadastro do animal ***\n");
         if(qtdAnimais < TAM){
+            printf("Informe a matricula:\n");
+            scanf("%d", &listaAnimais[qtdAnimais].matricula);
             printf("Informe a idade:\n");
             scanf("%d", &listaAnimais[qtdAnimais].idade);
             contIdade += listaAnimais[qtdAnimais].idade;
@@ -80,8 +83,30 @@ int main(){
             }
         break;
     case 2:
-        printf("*** Exclusao do animal ***\n");
-        break;
+            printf("*** Exclusao do animal ***\n");
+            if(qtdAnimais == 0){
+                printf("Não há animal para excluir\n");
+            } else {
+                int matricula;
+                int achou = 0;
+                printf("Digite a matricula que quer excluir:\n");
+                scanf("%d", &matricula);
+                for(int k = 0; k < qtdAnimais; k++){
+                    if (listaAnimais[k].matricula == matricula) {
+                        achou = 1;
+                        for(int l = k; l < qtdAnimais - 1; l++) {
+                            listaAnimais[l] = listaAnimais[l + 1];  
+                        }
+                        qtdAnimais--; 
+                        printf("Animal excluido com sucesso!\n");
+                        break; 
+                    }
+                }
+                if (!achou) {
+                    printf("Animal nao localizado!\n");
+                }
+            }
+            break;
     case 3:
         printf("*** Atualizacao do animal ***\n");
         break;
@@ -93,7 +118,7 @@ int main(){
                 printf("Lista de animais vazia!\n");
             } else {
                 for(int i = 0; i < qtdAnimais; i++){
-                printf("%d%c%s%d/%d/%d\n", listaAnimais[i].idade, listaAnimais[i].sexo, listaAnimais[i].nome, listaAnimais[i].dataNascimento.dia, listaAnimais[i].dataNascimento.mes, listaAnimais[i].dataNascimento.ano);
+                printf("%d%c%s%d/%d/%d%d\n", listaAnimais[i].idade, listaAnimais[i].sexo, listaAnimais[i].nome, listaAnimais[i].dataNascimento.dia, listaAnimais[i].dataNascimento.mes, listaAnimais[i].dataNascimento.ano, listaAnimais[i].matricula);
             }
             }
             break;
@@ -104,7 +129,7 @@ int main(){
             } else {
                 for(int j = 0; j < qtdAnimais; j++){
                     if(listaAnimais[j].idade >= media){
-                        printf("%d%c%s\n", listaAnimais[j].idade, listaAnimais[j].sexo, listaAnimais[j].nome, listaAnimais[j].dataNascimento.dia, listaAnimais[j].dataNascimento.mes, listaAnimais[j].dataNascimento.ano);
+                        printf("%d%c%s%d/%d/%d%d\n", listaAnimais[j].idade, listaAnimais[j].sexo, listaAnimais[j].nome, listaAnimais[j].dataNascimento.dia, listaAnimais[j].dataNascimento.mes, listaAnimais[j].dataNascimento.ano, listaAnimais[j].matricula);
                     }
                 }              
             }
