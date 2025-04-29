@@ -109,6 +109,37 @@ int main(){
             break;
     case 3:
         printf("*** Atualizacao do animal ***\n");
+            if(qtdAnimais == 0){
+                printf("Não há animal para atualização\n");
+            } else {
+                int matricula;
+                int achou = 0;
+                printf("Digite a matricula que quer atualizar:\n");
+                scanf("%d", &matricula);
+                for(int k = 0; k < qtdAnimais; k++){
+                    if (listaAnimais[k].matricula == matricula) {
+                        achou = 1;
+                        printf("Informe a idade atualizada:\n");
+                        scanf("%d", &listaAnimais[k].idade);
+                        getchar();
+                        printf("Informe o sexo atualizado:\n");
+                        scanf("%c", &listaAnimais[k].sexo);
+                        getchar();
+                        printf("Informe o nome atualizado:\n");
+                        gets(listaAnimais[k].nome);
+                        printf("Informe o dia do nascimento atualizado:\n");
+                        scanf("%d", &listaAnimais[k].dataNascimento.dia);
+                        printf("Informe o mes do nascimento atualizado\n");
+                        scanf("%d", &listaAnimais[k].dataNascimento.mes);
+                        printf("Informe o ano do nascimento atualizado:\n");
+                        scanf("%d", &listaAnimais[k].dataNascimento.ano);
+                        printf("Animal atualizado com sucesso!\n");
+                    }
+                }
+                if (!achou) {
+                    printf("Animal nao localizado!\n");
+                }
+            }
         break;
     case 4:
         opcaoDois = menuDois();
