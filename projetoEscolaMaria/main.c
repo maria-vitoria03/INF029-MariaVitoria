@@ -4,6 +4,7 @@
 
 #include "pessoa.h"
 #include "disciplinas.h"
+#include "relatorios.h"
 #include "geral.h"
 
 int main(){
@@ -35,12 +36,14 @@ int main(){
         break;
     case 3:
         menuDisciplina();
+        break;
+    case 4:
+        menuRelatorios();
         break;  
     default:
         printf("Opcao Invalida!\n");
         break;
     }
-
     }  
     return 0;
 }

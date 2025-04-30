@@ -4,6 +4,7 @@
 
 #include "pessoa.h"
 #include "disciplinas.h"
+#include "relatorios.h"
 #include "geral.h"
 
 int qtdDisciplinas = 0;
