@@ -34,7 +34,7 @@ int menuRelatorios(){
     listarProfessor();
     break;
     case 3:
-    //listarDisciplina();
+    listarDisciplina();
     break;
     default:
     printf("Opcao Invalida!\n");
@@ -57,13 +57,26 @@ void listarAluno(){
 }
 
 void listarProfessor(){
-    if(qtdDisciplinas == 0){
+    if(qtdProfs == 0){
         printf("Nao ha professores!\n");
     } else {
         for(int i = 0; i < qtdProfs; i++){
         printf("%d\n", listaProf[i].matricula);
         printf("%s\n", listaProf[i].nome);
         printf("%c\n", listaProf[i].sexo);
+        printf("-------------------------\n\n");
+        }
+    }
+}
+
+void listarDisciplina(){
+    if(qtdDisciplinas == 0){
+        printf("Nao ha disciplinas cadastradas!\n");
+    } else {
+        for(int i = 0; i < qtdDisciplinas; i++){
+        printf("%d\n", listaDisciplinas[i].codigo);
+        printf("%s\n", listaDisciplinas[i].nome);
+        printf("%c\n", listaDisciplinas[i].semestre);
         printf("-------------------------\n\n");
         }
     }
