@@ -9,6 +9,7 @@ extern int qtdAlunos;
 int menuAluno();
 void cadastrarAluno();
 void excluirAluno();
+void atualizarAluno();
 
 typedef struct {
     int matricula;

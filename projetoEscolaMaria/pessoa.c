@@ -33,6 +33,9 @@ int menuAluno(){
     case 2:
     excluirAluno();
     break;
+    case 3:
+    atualizarAluno();
+    break;
     default:
     printf("Opcao Invalida!\n");
     break;
@@ -71,6 +74,7 @@ void excluirAluno(){
     } else {
         printf("Informe a matricula do aluno que deseja excluir:\n");
         scanf("%d", &matAluno);
+        getchar();
     }
     for(int i = 0; i < qtdAlunos; i++){
         if (listaAlunos[i].matricula == matAluno){
@@ -85,5 +89,36 @@ void excluirAluno(){
     }
     if(!achou){
         printf("Matricula nao localizada!\n");
+    }
+}
+
+void atualizarAluno(){
+    int matAluno;
+    int achou = 0;
+    printf("Atualizacao de aluno\n\n");
+    if(qtdAlunos == 0){
+        printf("Nao existe alunos para atualizacao!\n");
+    } else {
+        printf("Informe a matricula do aluno que deseja atualizar:\n");
+        scanf("%d", &matAluno);
+        getchar();
+    }
+    for(int i = 0; i < qtdAlunos; i++){
+        if(listaAlunos[i].matricula == matAluno){
+        achou = 1;
+        printf("Informe o nome do aluno atualizado:\n");
+        fgets(listaAlunos[i].nome, MAX_LETRAS, stdin);
+        listaAlunos[i].nome[strcspn(listaAlunos[i].nome, "\n")] = '\0';
+        limparTela();
+        printf("Informe o sexo do aluno atualizado:\n");
+        scanf(" %c", &listaAlunos[i].sexo);
+        getchar();
+        limparTela();
+        printf("Atualizado com sucesso!\n"); 
+        }
+        if(!achou){
+            printf("Matricula nao localizada!\n");
+        }
+        break;
     }
 }
