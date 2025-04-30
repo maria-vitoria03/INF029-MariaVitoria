@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "pessoa.h"
+#include "geral.h"
 
 int main(){
     int sair = 0;
@@ -16,6 +19,7 @@ int main(){
     printf("Digite sua opcao:\n");
     scanf("%d", &opcao);
     getchar();
+    limparTela();
 
     switch (opcao) {
     case 0:
