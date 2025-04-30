@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "pessoa.h"
+#include "disciplinas.h"
 #include "geral.h"
 
 int main(){
@@ -31,6 +32,9 @@ int main(){
         break;
     case 2:
         menuProfessor();
+        break;
+    case 3:
+        menuDisciplina();
         break;  
     default:
         printf("Opcao Invalida!\n");

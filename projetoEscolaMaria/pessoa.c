@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "pessoa.h"
+#include "disciplinas.h"
 #include "geral.h"
 
 int qtdAlunos = 0;
