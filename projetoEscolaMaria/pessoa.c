@@ -30,6 +30,9 @@ int menuAluno(){
     case 1:
     cadastrarAluno();
     break;
+    case 2:
+    excluirAluno();
+    break;
     default:
     printf("Opcao Invalida!\n");
     break;
@@ -56,5 +59,31 @@ void cadastrarAluno(){
         qtdAlunos++;
     } else {
         printf("Lista de alunos completa\n");
+    }
+}
+
+void excluirAluno(){
+    int matAluno;
+    int achou = 0;
+    printf("Exclusao de aluno\n\n");
+    if(qtdAlunos == 0){
+        printf("Nao a aluno para exclusao!\n");
+    } else {
+        printf("Informe a matricula do aluno que deseja excluir:\n");
+        scanf("%d", &matAluno);
+    }
+    for(int i = 0; i < qtdAlunos; i++){
+        if (listaAlunos[i].matricula == matAluno){
+            achou = 1;
+            for(int j = i; j < qtdAlunos - 1; j++){
+                listaAlunos[j] = listaAlunos[j+1];
+            }
+            qtdAlunos--;
+            printf("Aluno excluido com sucesso!\n");
+            break;
+        }
+    }
+    if(!achou){
+        printf("Matricula nao localizada!\n");
     }
 }

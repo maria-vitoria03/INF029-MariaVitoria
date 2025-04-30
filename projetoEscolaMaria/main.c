@@ -23,6 +23,7 @@ int main(){
 
     switch (opcao) {
     case 0:
+    printf("Finalizando aplicacao...\n");
     return 0;
     break;
     case 1:
