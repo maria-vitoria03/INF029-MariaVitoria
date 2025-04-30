@@ -28,6 +28,9 @@ int main(){
     break;
     case 1:
         menuAluno();
+        break;
+    case 2:
+        menuProfessor();
         break;  
     default:
         printf("Opcao Invalida!\n");
