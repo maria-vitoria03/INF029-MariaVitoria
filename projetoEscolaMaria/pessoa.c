@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "pessoa.h"
 #include "disciplinas.h"
@@ -46,27 +47,52 @@ int menuAluno(){
     }   
 }
 
-void cadastrarAluno(){
+void cadastrarAluno() {
     printf("Cadastro de Aluno\n\n");
-    if(qtdAlunos < MAX_STUDENTS){
+
+    if (qtdAlunos < MAX_STUDENTS) {
+        int matriculaTemp;
         printf("Informe a matricula do aluno:\n");
-        scanf("%d", &listaAlunos[qtdAlunos].matricula);
+        if (scanf("%d", &matriculaTemp) < 1) {
+            printf("Matricula invalida!\n");
+            getchar();
+            return;
+        }
         getchar();
         limparTela();
+
+        listaAlunos[qtdAlunos].matricula = matriculaTemp;
+
         printf("Informe o nome do aluno:\n");
         fgets(listaAlunos[qtdAlunos].nome, MAX_LETRAS, stdin);
         listaAlunos[qtdAlunos].nome[strcspn(listaAlunos[qtdAlunos].nome, "\n")] = '\0';
         limparTela();
+
+        char tempSexo;
         printf("Informe o sexo:\n");
         scanf(" %c", &listaAlunos[qtdAlunos].sexo);
         getchar();
         limparTela();
-        printf("Cadastrado com sucesso!\n");
-        qtdAlunos++;
+
+        printf("Digite a data de nascimento (dia mes ano, separados por espaco): \n");
+        if (scanf("%d %d %d", &nascimento.dia, &nascimento.mes, &nascimento.ano) == 3) {
+            if(validaDataNascimento(nascimento)){
+                printf("Cadastrado com sucesso!\n");
+                getchar();
+                qtdAlunos++;
+                return;
+            } else {
+                printf("Data de nascimento invalida!\n");
+                return; 
+            }
+        }
+        getchar();
+        limparTela();
     } else {
         printf("Lista de alunos completa\n");
     }
 }
+
 
 void excluirAluno(){
     int matAluno;
