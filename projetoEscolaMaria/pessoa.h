@@ -17,10 +17,17 @@ void cadastrarProfessor();
 void excluirProfessor();
 void atualizarProfessor();
 
+typedef struct{
+    int dia;
+    int mes;
+    int ano;
+} DataNascimento;
+
 typedef struct {
     int matricula;
     char nome[MAX_LETRAS];
     char sexo;
+    DataNascimento nascimento;
 } Pessoa;
 
 Pessoa listaAlunos[MAX_STUDENTS];

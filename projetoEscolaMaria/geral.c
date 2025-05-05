@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 #include "geral.h"
+#include "pessoa.h"
 
 void limparTela() {
     #ifdef _WIN32

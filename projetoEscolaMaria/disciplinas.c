@@ -15,7 +15,7 @@ int menuDisciplina(){
     int opcao, sair = 0;
 
     while (!sair) {
-    printf("Modulo de disciplinas\n\n");
+    printf("****** Modulo de disciplinas ******\n\n");
     printf("0 - Voltar\n");
     printf("1 - Cadastrar\n");
     printf("2 - Excluir\n");

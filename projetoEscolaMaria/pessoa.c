@@ -16,7 +16,7 @@ int menuAluno(){
     int opcao, sair = 0;
 
     while (!sair) {
-    printf("Modulo de alunos\n\n");
+    printf("****** Modulo de alunos ******\n\n");
     printf("0 - Voltar\n");
     printf("1 - Cadastrar\n");
     printf("2 - Excluir\n");
@@ -48,17 +48,17 @@ int menuAluno(){
 }
 
 void cadastrarAluno() {
-    printf("Cadastro de Aluno\n\n");
+    printf("****** Cadastro de Alunos ******\n\n");
 
     if (qtdAlunos < MAX_STUDENTS) {
         int matriculaTemp;
         printf("Informe a matricula do aluno:\n");
-        if (scanf("%d", &matriculaTemp) < 1) {
-            printf("Matricula invalida!\n");
-            getchar();
-            return;
-        }
+        if (scanf("%d", &matriculaTemp) != 1 || matriculaTemp <= 0) {
+        printf("Matricula invalida! Use um numero inteiro positivo.\n");
         getchar();
+        return;
+        }
+        getchar(); 
         limparTela();
 
         listaAlunos[qtdAlunos].matricula = matriculaTemp;
@@ -69,37 +69,54 @@ void cadastrarAluno() {
         limparTela();
 
         char tempSexo;
-        printf("Informe o sexo:\n");
-        scanf(" %c", &listaAlunos[qtdAlunos].sexo);
+        printf("Informe o sexo (M/F):\n");
+        if (scanf(" %c", &tempSexo) != 1) {
+            printf("Sexo invalido!\n");
+            getchar();
+            return;
+        }
+
+        if (tempSexo == 'f' || tempSexo == 'F' || tempSexo == 'm' || tempSexo == 'M') {
+            listaAlunos[qtdAlunos].sexo = tempSexo;
+        } else {
+            printf("Sexo invalido!\n");
+            getchar();
+            return;
+        }
+
         getchar();
         limparTela();
 
         printf("Digite a data de nascimento (dia mes ano, separados por espaco): \n");
-        if (scanf("%d %d %d", &nascimento.dia, &nascimento.mes, &nascimento.ano) == 3) {
-            if(validaDataNascimento(nascimento)){
-                printf("Cadastrado com sucesso!\n");
+        if (scanf("%d %d %d", &listaAlunos[qtdAlunos].nascimento.dia, &listaAlunos[qtdAlunos].nascimento.mes, &listaAlunos[qtdAlunos].nascimento.ano) == 3) {
+            if (validaDataNascimento(listaAlunos[qtdAlunos].nascimento)) {
+                printf("Aluno cadastrado com sucesso!\n");
                 getchar();
                 qtdAlunos++;
                 return;
             } else {
                 printf("Data de nascimento invalida!\n");
-                return; 
+                getchar();
+                return;
             }
+        } else {
+            printf("Formato de data invalido!\n");
+            getchar();
+            return;
         }
-        getchar();
+
         limparTela();
     } else {
-        printf("Lista de alunos completa\n");
+        printf("Lista de Alunos completa\n");
     }
 }
-
 
 void excluirAluno(){
     int matAluno;
     int achou = 0;
     printf("Exclusao de aluno\n\n");
     if(qtdAlunos == 0){
-        printf("Nao a aluno para exclusao!\n");
+        printf("Nao ha aluno para exclusao!\n");
     } else {
         printf("Informe a matricula do aluno que deseja excluir:\n");
         scanf("%d", &matAluno);
@@ -143,6 +160,8 @@ void atualizarAluno(){
         scanf(" %c", &listaAlunos[i].sexo);
         getchar();
         limparTela();
+        printf("Digite a data de nascimento atualizada (dia mes ano, separados por espaco): \n");
+        scanf("%d %d %d", &listaAlunos[qtdAlunos].nascimento.dia, &listaAlunos[qtdAlunos].nascimento.mes, &listaAlunos[qtdAlunos].nascimento.ano);
         printf("Atualizado com sucesso!\n"); 
         }
         if(!achou){
@@ -157,7 +176,7 @@ int menuProfessor(){
     int opcao, sair = 0;
 
     while (!sair) {
-    printf("Modulo de professores\n\n");
+    printf("****** Modulo de professores ******\n\n");
     printf("0 - Voltar\n");
     printf("1 - Cadastrar\n");
     printf("2 - Excluir\n");
@@ -188,27 +207,70 @@ int menuProfessor(){
     }   
 }
 
-void cadastrarProfessor(){
-    printf("Cadastro de Professor\n\n");
-    if(qtdProfs < MAX_PROFS){
+void cadastrarProfessor() {
+    printf("Cadastro de Professores\n\n");
+
+    if (qtdProfs < MAX_PROFS) {
+        int matriculaTemp;
         printf("Informe a matricula do professor:\n");
-        scanf("%d", &listaProf[qtdProfs].matricula);
+        if (scanf("%d", &matriculaTemp) != 1 || matriculaTemp <= 0) {
+        printf("Matricula invalida! Use um numero inteiro positivo.\n");
         getchar();
+        return;
+        }
+        getchar(); 
         limparTela();
+
+        listaProf[qtdProfs].matricula = matriculaTemp;
+
         printf("Informe o nome do professor:\n");
         fgets(listaProf[qtdProfs].nome, MAX_LETRAS, stdin);
         listaProf[qtdProfs].nome[strcspn(listaProf[qtdProfs].nome, "\n")] = '\0';
         limparTela();
-        printf("Informe o sexo:\n");
-        scanf(" %c", &listaProf[qtdProfs].sexo);
+
+        char tempSexo;
+        printf("Informe o sexo (M/F):\n");
+        if (scanf(" %c", &tempSexo) != 1) {
+            printf("Sexo invalido!\n");
+            getchar();
+            return;
+        }
+
+        if (tempSexo == 'f' || tempSexo == 'F' || tempSexo == 'm' || tempSexo == 'M') {
+            listaProf[qtdProfs].sexo = tempSexo;
+        } else {
+            printf("Sexo invalido!\n");
+            getchar();
+            return;
+        }
+
         getchar();
         limparTela();
-        printf("Cadastrado com sucesso!\n");
-        qtdProfs++;
+
+        printf("Digite a data de nascimento (dia mes ano, separados por espaco): \n");
+        if (scanf("%d %d %d", &listaProf[qtdProfs].nascimento.dia, &listaProf[qtdProfs].nascimento.mes, &listaProf[qtdProfs].nascimento.ano) == 3) {
+            if (validaDataNascimento(listaProf[qtdProfs].nascimento)) {
+                printf("Professor cadastrado com sucesso!\n");
+                getchar();
+                qtdProfs++;
+                return;
+            } else {
+                printf("Data de nascimento invalida!\n");
+                getchar();
+                return;
+            }
+        } else {
+            printf("Formato de data invalido!\n");
+            getchar();
+            return;
+        }
+
+        limparTela();
     } else {
-        printf("Lista de professores completa\n");
+        printf("Lista de Professores completa\n");
     }
 }
+
 
 void excluirProfessor(){
     int matProf;
@@ -259,6 +321,8 @@ void atualizarProfessor(){
         scanf(" %c", &listaProf[i].sexo);
         getchar();
         limparTela();
+        printf("Digite a data de nascimento atualizada (dia mes ano, separados por espaco): \n");
+        scanf("%d %d %d", &listaProf[qtdProfs].nascimento.dia, &listaProf[qtdProfs].nascimento.mes, &listaProf[qtdProfs].nascimento.ano);
         printf("Atualizado com sucesso!\n"); 
         }
         if(!achou){
