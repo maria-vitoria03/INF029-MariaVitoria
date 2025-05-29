@@ -210,10 +210,24 @@ int q5(int num){
     Quantidade de vezes que número de busca ocorre em número base
  */
 
-int q6(int numerobase, int numerobusca)
-{
-    int qtdOcorrencias;
-    return qtdOcorrencias;
+int q6(int numerobase, int numerobusca) {
+  if(numerobase == numerobusca){
+    return 1;
+  }
+  int count = 0;
+  while(numerobase != 0){
+    int temp_base = numerobase;
+    int temp_busca = numerobusca;
+    while(temp_base % 10 == temp_busca % 10 && temp_busca != 0){
+      temp_base /= 10;
+      temp_busca /= 10;
+    }
+    if(temp_busca == 0){
+      count++;
+    }
+    numerobase /= 10;
+  }
+  return count;
 }
 
 /*
