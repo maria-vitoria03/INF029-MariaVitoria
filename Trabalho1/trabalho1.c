@@ -11,10 +11,10 @@
 //  O aluno deve preencher seus dados abaixo, e implementar as questões do trabalho
 
 //  ----- Dados do Aluno -----
-//  Nome:
-//  email:
-//  Matrícula:
-//  Semestre:
+//  Nome: Maria Vitória Santos da Silva
+//  email: mariavitoriaprog@gmail.com
+//  Matrícula: 20232160042 
+//  Semestre: 2º/3º
 
 //  Copyright © 2016 Renato Novais. All rights reserved.
 // Última atualização: 07/05/2021 - 19/08/2016
@@ -93,12 +93,7 @@ int teste(int a)
 int q1(char data[])
 {
   int datavalida = 1;
-
   //quebrar a string data em strings sDia, sMes, sAno
-
-
-  //printf("%s\n", data);
-
   if (datavalida)
       return 1;
   else
@@ -196,10 +191,13 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     Número invertido
  */
 
-int q5(int num)
-{
-
-    return num;
+int q5(int num){
+    int inv = 0;
+    while(num > 0){
+      inv = inv * 10 + num % 10;
+      num = num / 10;
+    }
+    return inv;
 }
 
 /*
