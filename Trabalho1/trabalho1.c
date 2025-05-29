@@ -152,9 +152,26 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
  @saida
     Um número n >= 0.
  */
+int searchChar (char texto[], char c, int isCaseSensitive) {
+    int quantity = 0;
+
+    if (isCaseSensitive == 1) {
+      for (int i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] == c) quantity++;
+      }
+    } else if (isCaseSensitive == 0) {
+      for (int i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] == c || texto[i] == c - 32) quantity++;
+      }
+    }
+    return quantity;
+}
+
 int q3(char *texto, char c, int isCaseSensitive)
 {
     int qtdOcorrencias = -1;
+
+    qtdOcorrencias = searchChar (texto, c, isCaseSensitive);
 
     return qtdOcorrencias;
 }
@@ -174,9 +191,44 @@ int q3(char *texto, char c, int isCaseSensitive)
         O retorno da função, n, nesse caso seria 1;
 
  */
+int searchString (char *strTexto, char *strBusca, int posicoes[30]) {
+  int inicial = 0;
+  int final = 1;
+  int acento = 0;
+  int contador = 0;
+    int temacento=0;
+
+  for (int i = 0; strTexto[i] != '\0'; i++) {
+
+    if (strTexto[i] == -61)
+     acento++; // -61 é o codigo de acento
+
+    if (strTexto[i] == strBusca[0]) {
+      int posicaoI = i;
+      int found = 1;
+      int j = 1;
+      for (; strBusca[j] != '\0'; j++) {
+
+        if (strTexto[i+j] != strBusca[j]) {
+          found = 0;
+          break;
+        }
+      }
+      if (found) {
+        posicoes[inicial] = (posicaoI + 1) - acento;
+        posicoes[final] = (i + j) - acento;
+        contador++;
+        inicial += 2;
+        final += 2;
+      }
+    }
+  }
+  return contador;
+}
+
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
-    int qtdOcorrencias = -1;
+    int qtdOcorrencias = searchString (strTexto, strBusca, posicoes);
 
     return qtdOcorrencias;
 }
